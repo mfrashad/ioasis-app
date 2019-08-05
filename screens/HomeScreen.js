@@ -8,16 +8,21 @@ import {
   Text,
   TouchableOpacity,
   View,
+  WebView,
 } from 'react-native';
 
 import { MonoText } from '../components/StyledText';
+import HeaderNavigationBar from '../components/HeaderNavigationBar'
 
-export default function HomeScreen() {
-  return (
+export default class HomeScreen extends React.Component {
+  render() {
+    return (
     <View style={styles.container}>
+    <HeaderNavigationBar navigation={this.props.navigation} title="Home" />
       <ScrollView
         style={styles.container}
         contentContainerStyle={styles.contentContainer}>
+        
         <View style={styles.welcomeContainer}>
           <Image
             source={
@@ -67,6 +72,7 @@ export default function HomeScreen() {
       </View>
     </View>
   );
+  }
 }
 
 HomeScreen.navigationOptions = {
