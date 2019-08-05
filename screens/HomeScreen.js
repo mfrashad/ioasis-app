@@ -8,11 +8,16 @@ import {
   Text,
   TouchableOpacity,
   View,
-  WebView,
+  Dimensions
 } from 'react-native';
 
+import { Ionicons } from '@expo/vector-icons';
+import { WebView } from 'react-native-webview';
 import { MonoText } from '../components/StyledText';
 import HeaderNavigationBar from '../components/HeaderNavigationBar'
+
+const DEVICE_WIDTH = Dimensions.get('window').width
+const DEVICE_HEIGHT = Dimensions.get('window').height
 
 export default class HomeScreen extends React.Component {
   render() {
@@ -22,54 +27,38 @@ export default class HomeScreen extends React.Component {
       <ScrollView
         style={styles.container}
         contentContainerStyle={styles.contentContainer}>
-        
-        <View style={styles.welcomeContainer}>
-          <Image
-            source={
-              __DEV__
-                ? require('../assets/images/robot-dev.png')
-                : require('../assets/images/robot-prod.png')
-            }
-            style={styles.welcomeImage}
+        <WebView
+        originWhitelist={['*']}
+        source={{ uri: 'https://gateway.utp.edu.my/ioasis/ads.html' }}
+        style={styles.newsWebView}
+        />
+        <View style={styles.openingHourContainer}>
+          <View style={styles.titleContainer}>
+            <Text style={styles.titleText}>Today's Opening Hour</Text>
+          </View>
+          <WebView
+          originWhitelist={['*']}
+          source={{ uri: 'https://gateway.utp.edu.my/ioasis/open.html' }}
+          style={styles.openingHourWebView}
           />
         </View>
-
-        <View style={styles.getStartedContainer}>
-          <DevelopmentModeNotice />
-
-          <Text style={styles.getStartedText}>Get started by opening</Text>
-
-          <View
-            style={[styles.codeHighlightContainer, styles.homeScreenFilename]}>
-            <MonoText>screens/HomeScreen.js</MonoText>
+        
+        <View style={styles.footerContainer}>
+          <Image
+            source={ require('../assets/images/footer.png') }
+            style={styles.footerImage}
+          />
+          <View style={styles.footer}>
+            <Text style={styles.footerText}>Information Resource Center</Text>
+            <Text style={styles.footerText}>Universiti Teknologi Petronas</Text>
+            <View style={styles.footerSocial}>
+              <Ionicons style={styles.socialIcon} name="logo-facebook" size={30} color="white" />
+              <Ionicons style={styles.socialIcon} name="logo-instagram" size={30} color="white" />
+              <Ionicons style={styles.socialIcon} name="logo-twitter" size={30} color="white" />
+            </View>
           </View>
-
-          <Text style={styles.getStartedText}>
-            Change this text and your app will automatically reload.
-          </Text>
-        </View>
-
-        <View style={styles.helpContainer}>
-          <TouchableOpacity onPress={handleHelpPress} style={styles.helpLink}>
-            <Text style={styles.helpLinkText}>
-              Help, it didn’t automatically reload!
-            </Text>
-          </TouchableOpacity>
         </View>
       </ScrollView>
-
-      <View style={styles.tabBarInfoContainer}>
-        <Text style={styles.tabBarInfoText}>
-          This is a tab bar. You can edit it in:
-        </Text>
-
-        <View
-          style={[styles.codeHighlightContainer, styles.navigationFilename]}>
-          <MonoText style={styles.codeHighlightText}>
-            navigation/MainTabNavigator.js
-          </MonoText>
-        </View>
-      </View>
     </View>
   );
   }
@@ -78,30 +67,6 @@ export default class HomeScreen extends React.Component {
 HomeScreen.navigationOptions = {
   header: null,
 };
-
-function DevelopmentModeNotice() {
-  if (__DEV__) {
-    const learnMoreButton = (
-      <Text onPress={handleLearnMorePress} style={styles.helpLinkText}>
-        Learn more
-      </Text>
-    );
-
-    return (
-      <Text style={styles.developmentModeText}>
-        Development mode is enabled: your app will be slower but you can use
-        useful development tools. {learnMoreButton}
-      </Text>
-    );
-  } else {
-    return (
-      <Text style={styles.developmentModeText}>
-        You are not in development mode: your app will run at full speed.
-      </Text>
-    );
-  }
-}
-
 function handleLearnMorePress() {
   WebBrowser.openBrowserAsync(
     'https://docs.expo.io/versions/latest/workflow/development-mode/'
@@ -119,6 +84,22 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
   },
+  newsWebView: {
+    width: DEVICE_WIDTH,
+    height: 200,
+  },
+  titleContainer: {
+    width: DEVICE_WIDTH - 20,
+    paddingVertical: 5,
+    backgroundColor: "#004B85",
+    justifyContent: 'center',
+    textAlign: 'center',
+    alignItems: 'center'
+  },
+  titleText: {
+    color: 'white',
+    fontSize: 20,
+  },
   developmentModeText: {
     marginBottom: 20,
     color: 'rgba(0,0,0,0.4)',
@@ -129,21 +110,13 @@ const styles = StyleSheet.create({
   contentContainer: {
     paddingTop: 30,
   },
-  welcomeContainer: {
+  openingHourContainer: {
     alignItems: 'center',
     marginTop: 10,
     marginBottom: 20,
   },
-  welcomeImage: {
-    width: 100,
-    height: 80,
-    resizeMode: 'contain',
-    marginTop: 3,
-    marginLeft: -10,
-  },
-  getStartedContainer: {
-    alignItems: 'center',
-    marginHorizontal: 50,
+  openingHourWebView:{
+    height: 100,
   },
   homeScreenFilename: {
     marginVertical: 7,
@@ -162,31 +135,6 @@ const styles = StyleSheet.create({
     lineHeight: 24,
     textAlign: 'center',
   },
-  tabBarInfoContainer: {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
-    ...Platform.select({
-      ios: {
-        shadowColor: 'black',
-        shadowOffset: { width: 0, height: -3 },
-        shadowOpacity: 0.1,
-        shadowRadius: 3,
-      },
-      android: {
-        elevation: 20,
-      },
-    }),
-    alignItems: 'center',
-    backgroundColor: '#fbfbfb',
-    paddingVertical: 20,
-  },
-  tabBarInfoText: {
-    fontSize: 17,
-    color: 'rgba(96,100,109, 1)',
-    textAlign: 'center',
-  },
   navigationFilename: {
     marginTop: 5,
   },
@@ -201,4 +149,35 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: '#2e78b7',
   },
-});
+  footerContainer: {
+  },
+  footer: {
+    paddingTop: 5,
+    height: 100,
+    backgroundColor: "#004B85",
+    textAlign: 'center',
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  footerImage: {
+    backgroundColor: 'white',
+    width: DEVICE_WIDTH,
+    height: 120,
+    resizeMode: 'cover',
+  },
+  footerText: {
+    fontSize: 14,
+    margin: 5,
+    fontWeight: 'bold',
+    color: 'white'
+  },
+  footerSocial: {
+    marginTop: 5,
+    flex:1,
+    flexDirection: 'row',
+  },
+  socialIcon: {
+    marginHorizontal: 10,
+  }
+})
