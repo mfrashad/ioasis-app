@@ -1,12 +1,21 @@
 import React from 'react';
-import { Platform } from 'react-native';
-import { createStackNavigator, createBottomTabNavigator, createDrawerNavigator } from 'react-navigation';
+import { Platform, View, Button, Text, StyleSheet} from 'react-native';
+import SafeAreaView from 'react-native-safe-area-view';
+import { createStackNavigator, createBottomTabNavigator, createDrawerNavigator, DrawerItems } from 'react-navigation';
 
 import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import WebScreen from '../screens/WebScreen';
+import * as WebBrowser from 'expo-web-browser';
+import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
+
+const openIRCAR = () => {
+  WebBrowser.openBrowserAsync(
+    'https://ulibrary.utp.edu.my/ircar/p1.html'
+  );
+}
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
@@ -80,7 +89,7 @@ const ScreenUrls = [
     slug: 'feedback',
     title: 'Feedback',
     url: 'https://utp.libsurveys.com/ioasisurvey',
-  },
+  }
 ]
 
 const getScreens = (ScreenUrls) => {
@@ -144,8 +153,37 @@ SettingsStack.path = '';
 const tabNavigator = createDrawerNavigator({
   Home: HomeStack,
   ...getScreens(ScreenUrls)
+},
+{
+  contentComponent:(props) => (
+      <ScrollView>
+          <SafeAreaView forceInset={{ top: 'always', horizontal: 'never' }}>
+              <DrawerItems {...props} />
+              <TouchableOpacity style={styles.drawerButton} onPress={openIRCAR}>
+                <Text styles={styles.drawerText} >IRC AR</Text>
+              </TouchableOpacity>
+          </SafeAreaView>
+      </ScrollView>
+  ),
+  drawerOpenRoute: 'DrawerOpen',
+  drawerCloseRoute: 'DrawerClose',
+  drawerToggleRoute: 'DrawerToggle'
 });
 
 tabNavigator.path = '';
+
+const styles = StyleSheet.create({
+  drawerButton: {
+    textAlign: 'left',
+    backgroundColor: '#fff',
+    paddingLeft: 15,
+    paddingVertical: 15,
+  },
+  drawerText: {
+    fontWeight: 'bold',
+    color: 'red',
+    fontSize: 30
+  }
+})
 
 export default tabNavigator;
