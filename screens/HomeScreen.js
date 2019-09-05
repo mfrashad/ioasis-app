@@ -15,11 +15,55 @@ import { Ionicons } from '@expo/vector-icons';
 import { WebView } from 'react-native-webview';
 import { MonoText } from '../components/StyledText';
 import HeaderNavigationBar from '../components/HeaderNavigationBar'
+import { bold } from 'ansi-colors';
 
 const DEVICE_WIDTH = Dimensions.get('window').width
 const DEVICE_HEIGHT = Dimensions.get('window').height
 
 export default class HomeScreen extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      openHours: []
+    }
+  }
+
+  fetchOpenHours = () => {
+    console.log('hello')
+    fetch("https://api3-au.libcal.com/api_hours_today.php?iid=3715&lid=4612&format=json&systemTime=0")
+      .then(response => response.json())
+      .then(data => {
+        this.setState({openHours: data.locations})
+        console.log(this.state)
+      })
+      .catch(err => console.log(err))
+  }
+
+  renderOpenHours = () => {
+    let openHours = []
+    console.log(this.state.openHours.length)
+    for(i=0; i<this.state.openHours.length; i++){
+      console.log(this.state.openHours[i])
+      openHours.push(
+      <Text key={i} style={styles.openHoursText}>{this.state.openHours[i].name} | {this.state.openHours[i].times.status.toUpperCase()} | {this.state.openHours[i].rendered} </Text>
+      )
+    }
+    return (
+      <View style={styles.openingHourContainer}>
+        <View style={styles.titleContainer}>
+          <Text style={styles.titleText}>Today's Opening Hour</Text>
+        </View>
+        <View style={styles.openingHourTextContainer}>
+          {openHours}
+        </View>
+      </View>
+    )
+  }
+
+  componentDidMount() {
+    this.fetchOpenHours()
+  }
+
   render() {
     return (
     <View style={styles.container}>
@@ -32,17 +76,7 @@ export default class HomeScreen extends React.Component {
         source={{ uri: 'https://gateway.utp.edu.my/ioasis/ads.html' }}
         style={styles.newsWebView}
         />
-        <View style={styles.openingHourContainer}>
-          <View style={styles.titleContainer}>
-            <Text style={styles.titleText}>Today's Opening Hour</Text>
-          </View>
-          <WebView
-          originWhitelist={['*']}
-          source={{ uri: 'https://gateway.utp.edu.my/ioasis/open.html' }}
-          style={styles.openingHourWebView}
-          />
-        </View>
-        
+        {this.renderOpenHours()}
         <View style={styles.footerContainer}>
           <Image
             source={ require('../assets/images/footer.png') }
@@ -67,17 +101,6 @@ export default class HomeScreen extends React.Component {
 HomeScreen.navigationOptions = {
   header: null,
 };
-function handleLearnMorePress() {
-  WebBrowser.openBrowserAsync(
-    'https://docs.expo.io/versions/latest/workflow/development-mode/'
-  );
-}
-
-function handleHelpPress() {
-  WebBrowser.openBrowserAsync(
-    'https://docs.expo.io/versions/latest/workflow/up-and-running/#cant-see-your-changes'
-  );
-}
 
 const styles = StyleSheet.create({
   container: {
@@ -100,13 +123,6 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 20,
   },
-  developmentModeText: {
-    marginBottom: 20,
-    color: 'rgba(0,0,0,0.4)',
-    fontSize: 14,
-    lineHeight: 19,
-    textAlign: 'center',
-  },
   contentContainer: {
     paddingTop: 30,
   },
@@ -115,39 +131,22 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 20,
   },
+  openingHourTextContainer: {
+    paddingVertical: 10,
+  },
+  openHoursText: {
+    fontSize: 14,
+    textAlign: 'left'
+  },
   openingHourWebView:{
     height: 100,
+    width: DEVICE_WIDTH,
   },
   homeScreenFilename: {
     marginVertical: 7,
   },
-  codeHighlightText: {
-    color: 'rgba(96,100,109, 0.8)',
-  },
-  codeHighlightContainer: {
-    backgroundColor: 'rgba(0,0,0,0.05)',
-    borderRadius: 3,
-    paddingHorizontal: 4,
-  },
-  getStartedText: {
-    fontSize: 17,
-    color: 'rgba(96,100,109, 1)',
-    lineHeight: 24,
-    textAlign: 'center',
-  },
   navigationFilename: {
     marginTop: 5,
-  },
-  helpContainer: {
-    marginTop: 15,
-    alignItems: 'center',
-  },
-  helpLink: {
-    paddingVertical: 15,
-  },
-  helpLinkText: {
-    fontSize: 14,
-    color: '#2e78b7',
   },
   footerContainer: {
   },
