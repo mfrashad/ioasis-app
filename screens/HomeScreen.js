@@ -33,7 +33,6 @@ export default class HomeScreen extends React.Component {
       .then(response => response.json())
       .then(data => {
         this.setState({openHours: data.locations})
-        console.log(this.state)
       })
       .catch(err => console.log(err))
   }

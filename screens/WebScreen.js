@@ -24,15 +24,11 @@ export default class WebScreen extends React.Component {
     return (
     <View style={styles.container}>
     <HeaderNavigationBar navigation={this.props.navigation} title="Home" />
-      <ScrollView
-        style={styles.container}
-        contentContainerStyle={styles.contentContainer}>
         <WebView
         originWhitelist={['*']}
         source={{ uri: this.props.screenUrl }}
         style={styles.webView}
         />
-      </ScrollView>
     </View>
   );
   }
