@@ -81,8 +81,8 @@ export default class HomeScreen extends React.Component {
             style={styles.footerImage}
           />
           <View style={styles.footer}>
-            <Text style={styles.footerText}>Information Resource Center</Text>
-            <Text style={styles.footerText}>Universiti Teknologi Petronas</Text>
+            <Text style={styles.footerText}>Information Resource Centre</Text>
+            <Text style={styles.footerText}>Universiti Teknologi PETRONAS</Text>
             <View style={styles.footerSocial}>
               <Ionicons style={styles.socialIcon} name="logo-facebook" size={30} color="white" />
               <Ionicons style={styles.socialIcon} name="logo-instagram" size={30} color="white" />
