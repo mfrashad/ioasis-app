@@ -8,13 +8,14 @@ import {
   Text,
   TouchableOpacity,
   View,
-  Dimensions
+  Dimensions,
+  Linking
 } from 'react-native';
 
 import { Ionicons } from '@expo/vector-icons';
 import { WebView } from 'react-native-webview';
-import { MonoText } from '../components/StyledText';
 import HeaderNavigationBar from '../components/HeaderNavigationBar'
+import SocialMedia from '../components/SocialMedia'
 
 const DEVICE_WIDTH = Dimensions.get('window').width
 const DEVICE_HEIGHT = Dimensions.get('window').height
@@ -81,9 +82,9 @@ export default class HomeScreen extends React.Component {
             <Text style={styles.footerText}>Information Resource Centre</Text>
             <Text style={styles.footerText}>Universiti Teknologi PETRONAS</Text>
             <View style={styles.footerSocial}>
-              <Ionicons style={styles.socialIcon} name="logo-facebook" size={30} color="white" />
-              <Ionicons style={styles.socialIcon} name="logo-instagram" size={30} color="white" />
-              <Ionicons style={styles.socialIcon} name="logo-twitter" size={30} color="white" />
+              <SocialMedia icon="logo-facebook" link={"https://www.facebook.com/IRCUTP"} size={30} color="white" />
+              <SocialMedia icon="logo-instagram" link={"https://twitter.com/IRCUTP"} size={30} color="white" />
+              <SocialMedia icon="logo-twitter" link={"https://instagram.com/ircutp"} size={30} color="white" />
             </View>
           </View>
         </View>
