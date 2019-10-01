@@ -50,7 +50,7 @@ export default class HomeScreen extends React.Component {
           <Text style={styles.titleText}>Today's Opening Hour</Text>
         </View>
         <View style={styles.openingHourTextContainer}>
-          {openHours}
+          {(this.state.openHours.length != 0) ? openHours : (<Text>Loading...</Text> )}
         </View>
       </View>
     )
