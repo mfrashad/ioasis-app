@@ -28,7 +28,6 @@ export default class HomeScreen extends React.Component {
   }
 
   fetchOpenHours = () => {
-    console.log('hello')
     fetch("https://api3-au.libcal.com/api_hours_today.php?iid=3715&lid=4612&format=json&systemTime=0")
       .then(response => response.json())
       .then(data => {
@@ -39,9 +38,7 @@ export default class HomeScreen extends React.Component {
 
   renderOpenHours = () => {
     let openHours = []
-    console.log(this.state.openHours.length)
     for(i=0; i<this.state.openHours.length; i++){
-      console.log(this.state.openHours[i])
       openHours.push(
       <Text key={i} style={styles.openHoursText}>{this.state.openHours[i].name} | {this.state.openHours[i].times.status.toUpperCase()} | {this.state.openHours[i].rendered} </Text>
       )
