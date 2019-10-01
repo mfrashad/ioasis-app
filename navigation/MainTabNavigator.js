@@ -71,25 +71,25 @@ const ScreenUrls = [
     url: 'https://ibest.utp.edu.my/calendar/event/?cid=5413&t=d&d=0000-00-00&cal%5B%5D=5413',
   },
   {
+    slug: 'chat',
+    title: 'Live Chat',
+    url: 'https://gateway.utp.edu.my/ioasis/chat.html',
+  },
+  {
     slug: 'enquiry',
     title: 'Enquiry',
     url: 'https://libanswers.utp.edu.my/ioasisfaq/',
+  },
+  {
+    slug: 'feedback',
+    title: 'Feedback',
+    url: 'https://utp.libsurveys.com/ioasisurvey',
   },
   {
     slug: 'faq',
     title: 'FAQ',
     url: 'https://libanswers.utp.edu.my',
   },
-  {
-    slug: 'chat',
-    title: 'Live Chat',
-    url: 'https://gateway.utp.edu.my/ioasis/chat.html',
-  },
-  {
-    slug: 'feedback',
-    title: 'Feedback',
-    url: 'https://utp.libsurveys.com/ioasisurvey',
-  }
 ]
 
 const getScreens = (ScreenUrls) => {
@@ -133,10 +133,10 @@ const tabNavigator = createDrawerNavigator({
   contentComponent:(props) => (
       <ScrollView>
           <SafeAreaView forceInset={{ top: 'always', horizontal: 'never' }}>
-              <DrawerItems {...props} />
               <TouchableOpacity style={styles.drawerButton} onPress={openIRCAR}>
-                <Text styles={styles.drawerText} >IRC AR</Text>
+                <Text >IRC AR</Text>
               </TouchableOpacity>
+              <DrawerItems {...props} />
           </SafeAreaView>
       </ScrollView>
   ),
@@ -158,12 +158,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     paddingLeft: 15,
     paddingVertical: 15,
-    color: 'red'
-  },
-  drawerText: {
-    fontWeight: 'bold',
-    color: 'red',
-    fontSize: 30
   }
 })
 
