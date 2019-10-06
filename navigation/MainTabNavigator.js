@@ -135,10 +135,10 @@ const tabNavigator = createDrawerNavigator({
   contentComponent:(props) => (
       <ScrollView>
           <SafeAreaView forceInset={{ top: 'always', horizontal: 'never' }}>
+              <DrawerItems {...props} />
               <TouchableOpacity style={styles.drawerButton} onPress={openIRCAR}>
                 <Text >IRC AR</Text>
               </TouchableOpacity>
-              <DrawerItems {...props} />
           </SafeAreaView>
       </ScrollView>
   ),
