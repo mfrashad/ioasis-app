@@ -20,16 +20,6 @@ import SocialMedia from '../components/SocialMedia'
 
 const DEVICE_WIDTH = Dimensions.get('window').width
 const DEVICE_HEIGHT = Dimensions.get('window').height
-
-const actions = [
-  {
-    text: "QR Code Scanner",
-    icon: require("../assets/images/qr-icon.png"),
-    name: "qr_scanner",
-    position: 1
-  }
-];
-
 export default class HomeScreen extends React.Component {
   constructor(props) {
     super(props)
@@ -75,15 +65,14 @@ export default class HomeScreen extends React.Component {
     <View style={styles.container}>
     <HeaderNavigationBar navigation={this.props.navigation} title="Home" />
       <ScrollView
-        style={styles.container}
         contentContainerStyle={styles.contentContainer}>
-        
         <WebView
-        originWhitelist={['*']}
-        source={{ uri: 'https://gateway.utp.edu.my/ioasis/ads.html' }}
-        style={styles.newsWebView}
+          originWhitelist={['*']}
+          source={{ uri: 'https://gateway.utp.edu.my/ioasis/ads.html' }}
+          style={styles.newsWebView}
         />
         {this.renderOpenHours()}
+        
         <View style={styles.footerContainer}>
           <Image
             source={ require('../assets/images/footer.png') }
@@ -99,7 +88,6 @@ export default class HomeScreen extends React.Component {
             </View>
           </View>
         </View>
-        
       </ScrollView>
       <ActionButton
         buttonColor="#FFF"
@@ -108,6 +96,7 @@ export default class HomeScreen extends React.Component {
         shadowStyle={styles.fabShadow}
         fixNativeFeedbackRadius={true}
       />
+      
     </View>
   );
   }
@@ -140,6 +129,8 @@ const styles = StyleSheet.create({
   },
   contentContainer: {
     paddingTop: 30,
+    flexGrow: 1,
+    backgroundColor: '#FFF',
   },
   openingHourContainer: {
     alignItems: 'center',
@@ -157,17 +148,15 @@ const styles = StyleSheet.create({
     height: 100,
     width: DEVICE_WIDTH,
   },
-  homeScreenFilename: {
-    marginVertical: 7,
-  },
-  navigationFilename: {
-    marginTop: 5,
-  },
   footerContainer: {
+    flex: 1,
+    justifyContent: 'flex-end'
   },
   footer: {
     paddingTop: 5,
-    height: 100,
+    paddingBottom: 40,
+    height: 120,
+    maxHeight: 120,
     backgroundColor: "#004B85",
     textAlign: 'center',
     flex: 1,
