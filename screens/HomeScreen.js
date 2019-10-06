@@ -83,8 +83,8 @@ export default class HomeScreen extends React.Component {
             <Text style={styles.footerText}>Universiti Teknologi PETRONAS</Text>
             <View style={styles.footerSocial}>
               <SocialMedia icon="logo-facebook" link={"https://www.facebook.com/IRCUTP"} size={30} color="white" />
-              <SocialMedia icon="logo-instagram" link={"https://twitter.com/IRCUTP"} size={30} color="white" />
-              <SocialMedia icon="logo-twitter" link={"https://instagram.com/ircutp"} size={30} color="white" />
+              <SocialMedia icon="logo-instagram" link={"https://instagram.com/ircutp"} size={30} color="white" />
+              <SocialMedia icon="logo-twitter" link={"https://twitter.com/IRCUTP"} size={30} color="white" />
             </View>
           </View>
         </View>
