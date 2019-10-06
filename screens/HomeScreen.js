@@ -12,7 +12,7 @@ import {
   Linking
 } from 'react-native';
 
-import { FloatingAction } from "react-native-floating-action";
+import ActionButton from 'react-native-action-button';
 import { Ionicons } from '@expo/vector-icons';
 import { WebView } from 'react-native-webview';
 import HeaderNavigationBar from '../components/HeaderNavigationBar'
@@ -77,6 +77,7 @@ export default class HomeScreen extends React.Component {
       <ScrollView
         style={styles.container}
         contentContainerStyle={styles.contentContainer}>
+        
         <WebView
         originWhitelist={['*']}
         source={{ uri: 'https://gateway.utp.edu.my/ioasis/ads.html' }}
@@ -98,13 +99,15 @@ export default class HomeScreen extends React.Component {
             </View>
           </View>
         </View>
-        <FloatingAction
-          animated={false}
-          onPressMain={name => {
-            this.props.navigation.navigate('Scanner')
-          }}
-        />
+        
       </ScrollView>
+      <ActionButton
+        buttonColor="#FFF"
+        onPress={() => this.props.navigation.navigate('Scanner') }
+        renderIcon={() => (<Ionicons name={"md-qr-scanner"} size={30} color={'#004B85'} />)}
+        shadowStyle={styles.fabShadow}
+        fixNativeFeedbackRadius={true}
+      />
     </View>
   );
   }
@@ -190,5 +193,15 @@ const styles = StyleSheet.create({
   },
   socialIcon: {
     marginHorizontal: 10,
+  },
+  fabShadow: {
+    shadowOpacity: 0.35,
+    shadowOffset: {
+      width: 0,
+      height: 5
+    },
+    shadowColor: '#000',
+    shadowRadius: 3,
+    elevation: 5,
   }
 })
