@@ -68,7 +68,7 @@ export default class HomeScreen extends React.Component {
         contentContainerStyle={styles.contentContainer}>
         <WebView
           originWhitelist={['*']}
-          source={{ uri: 'https://gateway.utp.edu.my/ioasis/ads.html' }}
+          source={{ uri: 'https://ulibrary.utp.edu.my/ioasis/ads.html' }}
           style={styles.newsWebView}
         />
         {this.renderOpenHours()}
