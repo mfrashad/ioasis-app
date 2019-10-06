@@ -7,6 +7,10 @@ import { Camera } from 'expo-camera';
 import { Linking } from 'expo';
 
 export default class BarcodeScannerExample extends React.Component {
+  static navigationOptions = {
+    title: 'QR Ccode Scanner',
+  };
+
   state = {
     hasCameraPermission: null,
     scanned: false,
