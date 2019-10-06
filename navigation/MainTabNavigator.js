@@ -10,6 +10,7 @@ import SettingsScreen from '../screens/SettingsScreen';
 import WebScreen from '../screens/WebScreen';
 import * as WebBrowser from 'expo-web-browser';
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
+import QRScannerScreen from '../screens/QRScannerScreen';
 
 const openIRCAR = () => {
   WebBrowser.openBrowserAsync(
@@ -25,6 +26,7 @@ const config = Platform.select({
 const HomeStack = createStackNavigator(
   {
     Home: HomeScreen,
+    Scanner: QRScannerScreen,
   },
   config
 );

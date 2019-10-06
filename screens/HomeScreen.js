@@ -12,6 +12,7 @@ import {
   Linking
 } from 'react-native';
 
+import { FloatingAction } from "react-native-floating-action";
 import { Ionicons } from '@expo/vector-icons';
 import { WebView } from 'react-native-webview';
 import HeaderNavigationBar from '../components/HeaderNavigationBar'
@@ -19,6 +20,15 @@ import SocialMedia from '../components/SocialMedia'
 
 const DEVICE_WIDTH = Dimensions.get('window').width
 const DEVICE_HEIGHT = Dimensions.get('window').height
+
+const actions = [
+  {
+    text: "QR Code Scanner",
+    icon: require("../assets/images/qr-icon.png"),
+    name: "qr_scanner",
+    position: 1
+  }
+];
 
 export default class HomeScreen extends React.Component {
   constructor(props) {
@@ -88,6 +98,12 @@ export default class HomeScreen extends React.Component {
             </View>
           </View>
         </View>
+        <FloatingAction
+          animated={false}
+          onPressMain={name => {
+            this.props.navigation.navigate('Scanner')
+          }}
+        />
       </ScrollView>
     </View>
   );
