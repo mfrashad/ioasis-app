@@ -75,7 +75,7 @@ const ScreenUrls = [
   {
     slug: 'chat',
     title: 'Live Chat',
-    url: 'https://gateway.utp.edu.my/ioasis/chat.html',
+    url: 'https://libguides.utp.edu.my/mobilechat',
   },
   {
     slug: 'enquiry',
