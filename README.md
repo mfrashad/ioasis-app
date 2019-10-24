@@ -93,25 +93,6 @@ If it still doesn't work, it may be due to the router configuration &mdash; this
 </p>
 </details>
 
-## Making your first change
-
-Open up `App.js` and change the text to "Hello, world!". You should see it update on your device. This is great progress, we now have the Expo toolchain running on our machine and we are able to edit the source code for a project and see the changes live on our device!
-
-<details style={{paddingTop: 0}}><summary><h4>Are the changes not showing up on your device?</h4></summary>
-<p>
-
-The Expo client is configured by default to automatically reload the app whenever a file is changed, but let's just make sure we go over the steps to enable it in case somehow things just aren't working.
-
-- First, make sure you have [development mode enabled in Expo CLI](../../workflow/development-mode/#development-mode).
-- Next, close the app and reopen it.
-- Once the app is open again, shake your device to reveal the developer menu. If you are using an emulator, press `⌘+d` for iOS or `ctrl+m` for Android.
-- If you see `Enable Live Reload`, press it and your app will reload. If you see `Disable Live Reload` then exit the developer menu and try making another change.
-
-  ![In-app developer menu](/static/images/developer-menu.png)
-
-</p>
-</details>
-
 ## Adding New WebView Screen on Navigation Drawer
 
 The WebView links shown in the navigation drawer is read from a constant stored in `constants/ScreenUrls.js`.
