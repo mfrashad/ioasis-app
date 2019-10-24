@@ -129,7 +129,10 @@ Example:
 After making the changes, proceed to the next section on how to build the app bundle.
 
 ## Building App Bundle
-The bundle file or the apk file can be generated using the expo-cli. For uploading the update to Playstore, the bundle file should be used
+The bundle file or the apk file can be generated using the expo-cli. For uploading the update to Playstore, the bundle file should be used.
+
+ 
+**Before building a new bundle/apk file. Please increment the app version in `app.json` file.**
 
 Bundle file
 ```
