@@ -126,6 +126,25 @@ Example:
   }
 ```
 
+After making the changes, proceed to the next section on how to build the app bundle.
+
+## Building App Bundle
+The bundle file or the apk file can be generated using the expo-cli. For uploading the update to Playstore, the bundle file should be used
+
+Bundle file
+```
+expo build:android -t app-bundle
+```
+
+Apk file
+```
+expo build:android -t apk
+```
+
+After running any of the commands above, it will give a download link to the finished build of the app. Download the bundle/apk file from the link and proceed to upload the new bundle file to the Playstore.
+
+
+
 
 
 
