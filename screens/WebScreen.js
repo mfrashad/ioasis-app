@@ -1,19 +1,12 @@
 import * as WebBrowser from 'expo-web-browser';
 import React from 'react';
 import {
-  Image,
-  Platform,
-  ScrollView,
   StyleSheet,
-  Text,
-  TouchableOpacity,
   View,
   Dimensions
 } from 'react-native';
 
-import { Ionicons } from '@expo/vector-icons';
 import { WebView } from 'react-native-webview';
-import { MonoText } from '../components/StyledText';
 import HeaderNavigationBar from '../components/HeaderNavigationBar'
 
 const DEVICE_WIDTH = Dimensions.get('window').width

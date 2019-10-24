@@ -8,7 +8,7 @@ import { Linking } from 'expo';
 
 export default class BarcodeScannerExample extends React.Component {
   static navigationOptions = {
-    title: 'QR Ccode Scanner',
+    title: 'QR Code Scanner',
   };
 
   state = {
