@@ -28,7 +28,8 @@
       "bundleIdentifier": "com.utp.ioasis"
     },
     "android": {
-      "package": "com.utp.ioasis"
+      "package": "com.utp.ioasis",
+      "versionCode": 2
     }
   }
 }
